@@ -66,7 +66,7 @@ python -m pip install --break-system-packages jsonify
 ```
 ## create schema, tables and populate tables with good books
 ```bash
-git clone '<https://github.com/collinder/py-rest-service.git>' ~/sencillo
+git clone "https://github.com/collinder/py-rest-service.git" ~/sencillo
 cd ~/sencillo
 python serv.py init
 ```
