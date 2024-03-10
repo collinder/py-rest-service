@@ -17,7 +17,8 @@ sudo pacman -S postgresql
 ```bash
 sudo su - postgres
 initdb --locale en_US.UTF-8 -D /var/lib/postgres/data
-exit```
+exit
+```
 
 ## Start postgresql and check if it is running
 ```bash
