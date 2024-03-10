@@ -71,7 +71,7 @@ def get_authors():
     cursor.close()
     return jsonify({'authors' : q_result})
 
-@app.route('/old_writers/<a_id>')
+@app.route('/old_old_writers/<a_id>')
 def get_books_of_author(a_id):
     cursor = g.con.cursor()
     query = """WITH writer AS
@@ -89,7 +89,7 @@ def get_books_of_author(a_id):
         cursor.close()
         return jsonify({'id' : q_result[0][0], 'name' : q_result[0][1], 'books' : books})
 
-@app.route('/writers/<a_id>')
+@app.route('/old_writers/<a_id>')
 def get_books_of_author_by_id(a_id):
     cursor = g.con.cursor()
     query = """WITH writer AS
@@ -104,7 +104,21 @@ def get_books_of_author_by_id(a_id):
         cursor.close()
         return jsonify({'id' : a_id, 'name' : q_result[0][1], 'books' : q_result[0][2]})
 
-
+@app.route('/writers/<a_id>')
+def get_books_of_author_by_id_final(a_id):
+    cursor = g.con.cursor()
+    query = """WITH writer AS
+(SELECT id as a_id, name as author_name from books.Writer where id = """ + a_id + """),
+author_book AS
+(SELECT author_id, MIN(author_name) as name, JSONB_AGG(jsonb_build_object('id', books.Book.id, 'name', books.Book.name)) as books from writer LEFT JOIN books.Book ON author_id=a_id group by author_id)
+SELECT JSONB_AGG(jsonb_build_object('id', ab.author_id, 'name', ab.name, 'books', ab.books)) from author_book ab;    """
+    q_result = cursor.execute(query).fetchall()
+    if not q_result[0][0]:
+        cursor.close()
+        return jsonify({'id' : a_id, 'name' : 'None', "books": []})
+    else:
+        cursor.close()
+        return jsonify(q_result)
 
 
 if __name__ == '__main__':

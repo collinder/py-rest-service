@@ -80,4 +80,4 @@ python serv.py
 ## check how it is working
 0. Open your browser
 1. Go to http://127.0.0.1:5000/ - can you see all authors in json format?
-2. Go to http://127.0.0.1:5000/3 - can you see all books of that author?
+2. Go to http://127.0.0.1:5000/writers/1 - can you see all books of that author?
