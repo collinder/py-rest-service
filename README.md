@@ -80,3 +80,9 @@ python serv.py
 0. Open your browser
 1. Go to http://127.0.0.1:5000/ - can you see all authors in json format?
 2. Go to http://127.0.0.1:5000/writers/1 - can you see all books of that author?
+
+# Warnings
+**do not configure your db for remote access if you exposed your password somewhere!**
+
+**that service may be vulnerable to sql injection - we are injecting string parameter from GET request into sql query directly**
+
