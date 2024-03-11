@@ -59,7 +59,6 @@ psql -h localhost -d prueba -U uno -p 5432
 ## install pip, Flask and psycopg
 ```bash
 sudo pacman -S python-pip
-python -m pip install --break-system-packages psycopg2
 python -m pip install --break-system-packages psycopg
 python -m pip install --break-system-packages flask
 python -m pip install --break-system-packages jsonify
