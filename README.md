@@ -20,7 +20,7 @@ initdb --locale en_US.UTF-8 -D /var/lib/postgres/data
 exit
 ```
 
-## Start postgresql and check if it is running
+## Start postgresql and check how it is running
 ```bash
 sudo systemctl start postgresql
 ```
